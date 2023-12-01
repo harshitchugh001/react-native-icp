@@ -1,0 +1,15 @@
+{
+  "canisters": {
+    "greet_dapp": {
+      "main": "./crowdfunding/src/main.mo",
+      "type": "motoko"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "version": 1
+}
