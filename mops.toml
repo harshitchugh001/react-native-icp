@@ -1,0 +1,4 @@
+[dependencies]
+base = "0.9.8"
+candb = "1.0.2"
+uuid = "1.0.0"

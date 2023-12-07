@@ -1,15 +1,27 @@
 {
   "canisters": {
-    "greet_dapp": {
+    "crowdfunding": {
+      "type": "motoko",
       "main": "./crowdfunding/src/main.mo",
-      "type": "motoko"
+      "declarations": {
+        "node_compatibility": true
+      }
+    },
+    "login": {
+      "type": "motoko",
+      "main": "./crowdfunding/src/login.mo",
+      "declarations": {
+        "node_compatibility": true
+      }
     }
   },
   "defaults": {
     "build": {
       "args": "",
-      "packtool": ""
+      "packtool": "mops sources"
     }
   },
   "version": 1
 }
+
+

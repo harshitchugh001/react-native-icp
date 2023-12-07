@@ -1,5 +1,0 @@
-service : {
-  get: () -> (text) query;
-  get1: () -> (text);
-  greet: (text) -> (text);
-}

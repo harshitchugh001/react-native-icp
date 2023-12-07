@@ -1,0 +1,36 @@
+type userlogin = 
+ record {
+   userEmail: text;
+   userPassword: text;
+ };
+type UserInfo = 
+ record {
+   userConfirmPassword: text;
+   userEmail: text;
+   userName: text;
+   userPassword: text;
+ };
+type ScalingOptions = 
+ record {
+   autoScalingHook: AutoScalingCanisterSharedFunctionHook;
+   sizeLimit: ScalingLimitType;
+ };
+type ScalingLimitType = 
+ variant {
+   count: nat;
+   heapSize: nat;
+ };
+type Login = 
+ service {
+   getPK: () -> (text) query;
+   login: (userlogin) -> (text);
+   signUp: (UserInfo) -> (text);
+   skExists: (text) -> (bool) query;
+   transferCycles: () -> ();
+ };
+type AutoScalingCanisterSharedFunctionHook = func (text) -> (text);
+service : (record {
+             owners: opt vec principal;
+             partitionKey: text;
+             scalingOptions: ScalingOptions;
+           }) -> Login

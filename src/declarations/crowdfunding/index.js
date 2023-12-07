@@ -1,10 +1,15 @@
 import { Actor, HttpAgent } from "@dfinity/agent";
-// Imports and re-exports candid interface
-import { idlFactory } from "./greet_dapp.did.js";
-export { idlFactory } from "./greet_dapp.did.js";
 
-// Replace canisterId with your custom canister id - or place inside .env file as GREET_DAPP_CANISTER_ID
-export const canisterId = "bkyz2-fmaaa-aaaaa-qaaaq-cai";
+// Imports and re-exports candid interface
+import { idlFactory } from "./crowdfunding.did.js";
+export { idlFactory } from "./crowdfunding.did.js";
+
+/* CANISTER_ID is replaced by webpack based on node environment
+ * Note: canister environment variable will be standardized as
+ * process.env.CANISTER_ID_<CANISTER_NAME_UPPERCASE>
+ * beginning in dfx 0.15.0
+ */
+export const canisterId ="bkyz2-fmaaa-aaaaa-qaaaq-cai";
 
 export const createActor = (canisterId, options = {}) => {
   const agent = options.agent || new HttpAgent({ ...options.agentOptions });
@@ -29,11 +34,11 @@ export const createActor = (canisterId, options = {}) => {
   return Actor.createActor(idlFactory, {
     agent,
     canisterId,
+    blsVerify: ()=> true,
     ...options.actorOptions,
   });
 };
-
-export const greet_dapp = createActor(canisterId, {
+export const crowdfunding = createActor(canisterId, {
   agentOptions: {
     fetchOptions: {
       reactNative: {
@@ -46,6 +51,6 @@ export const greet_dapp = createActor(canisterId, {
       },
     },
     blsVerify: () => true,
-    host: "https://6fb3-2401-4900-5f1c-2166-5b8b-3a4f-4ed1-3dde.ngrok-free.app/",
+    host: "http://localhost:4943",
   },
 });
